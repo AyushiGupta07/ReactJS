@@ -23,9 +23,8 @@
     flex-wrap: wrap;
 }
 .res-card{
-    padding: 10px;
+    padding: 5px;
     width: 200px;
-    height: 350px;
     border: 1px solid black;
     margin: 5px;
 }
@@ -38,4 +37,27 @@
 }
 .res-logo{
     width: 100%;
+}
+.filter-btn{
+    padding: 5px;
+    margin: 5px;
+}
+.shimer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.shimer-card{
+    width: 200;
+    height: 350px;
+    margin: 10px;
+    background-color: grey;  
+    border: 1px solid black;
+}
+.login{
+    padding: 20px;
+    cursor: pointer;
+    border: 1px solid black;
+}
+.filter{
+    display: flex;
 }
