@@ -1,9 +1,16 @@
 import { LOGOI_URL } from "../utils/constants";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
+import { Link } from "react-router-dom";
+import { About } from "./About";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
+  useEffect(() => {
+    console.log("useEffect called");
+  }, [btnName]);
+  const onlineStatus = useOnlineStatus();
   return (
     <div className="header">
       <div className="logo-container">
@@ -11,9 +18,12 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
+          <li>Online Status: {onlineStatus ? "✅":"🔴"}</li>
+          <li><Link to="/">Home</Link></li>
+          <li>
+            <Link to="/about">About Us</Link>
+          </li>
+          <li><Link to="/contactUs"> Contact Us</Link></li>
           <li>Cart</li>
           <button
             className="login"

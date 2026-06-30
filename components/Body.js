@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { obj } from "../utils/mockData";
+import obj from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
 import { Shimmer } from "./Shimmer";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
-export const Body = () => {
+const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchFilter, setSearchFilter] = useState([]);
   const [searchText, setSearchText] = useState("");
-  console.log("body rendered");
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -28,6 +28,12 @@ export const Body = () => {
       console.log(err);
     }
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if(!onlineStatus){
+    return <h1>Looks like you are offline!! Please check your internet connection</h1>
+  }
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -64,7 +70,7 @@ export const Body = () => {
             const filteredList = listOfRestaurants.filter((res) => {
               return res.info.avgRating > 4;
             });
-            setListOfRestaurants(filteredList);
+            setSearchFilter(filteredList);
           }}
         >
           Top Rated Restaurants
@@ -72,9 +78,15 @@ export const Body = () => {
       </div>
       <div className="res-container">
         {searchFilter.map((restaurant, index) => {
-          return <RestaurantCard resObj={restaurant} key={index} />;
+          return (
+            <Link key={index} to={"/restaurant/" + restaurant?.info?.id}>
+              <RestaurantCard resObj={restaurant} />
+            </Link>
+          );
         })}
       </div>
     </div>
   );
 };
+
+export default Body;

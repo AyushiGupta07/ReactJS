@@ -8,9 +8,7 @@ const RestaurantCard = (props) => {
       <img
         className="res-logo"
         alt="res-logo"
-        src={
-          FOOD_IMAGE + cloudinaryImageId
-        }
+        src={FOOD_IMAGE + cloudinaryImageId}
       />
       <h3>{resObj.info.name}</h3>
       <h4>{resObj.info.avgRating}</h4>
