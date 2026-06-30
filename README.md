@@ -12,3 +12,12 @@
 - Consistent Hashing
 - Code splitting 
 - TreeShaking - remove unused code
+
+
+
+# lazy loading
+ - Chunking
+ - Code splitting
+ - Dynamic Bundling
+ - on demand loading
+ - dynamic import
